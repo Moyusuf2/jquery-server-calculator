@@ -3,36 +3,37 @@ console.log('in client.js');
 $(document).ready(onReady);
 
 function onReady(){
-    console.log('in onReady');
+console.log('ready!');
 
-    $('#add').on('click', onAddition);
-    $('#subtract').on('click', onSubtract);
-    $('#multiply').on('click', onMultiply)
-    $('#divide').on('click', onDivide)
-    $('#equal').on('click', onEquals)
-    $('#clear').on('click', onClear)
+let operator;
+
+$('#submitBtn').on('click', onSubmit);
+
+function onSubmit(evt){
+    evt.preventDefault();
+    let newSubmit =  {
+        numOne: Number($('#number1').val()),
+        numTwo: Number($('#number2').val()),
+        value: operator
+    }
+    console.log(newSubmit);
+    $.ajax({
+        method: 'POST', 
+        url: '/calculate',
+        data: newSubmit
+        // Sending to server side
+    })
+    .then(response => {
+        console.log('POST /calculate response', response);
+
+        answer();
+    })
+    .catch(err => {
+        console.log('POST /calculate error', err);
+    });
 }
 
-
-function onAddition(){
-    console.log('in addition');
+function answer(){
+    console.log('in answer');
 }
 
-function onSubtract(){
-    console.log('in subtract');
-}
-function onMultiply(){
-    console.log('in onMultiply');
-}
-function onDivide(){
-    console.log('in onDivide');    
-
-}
-
-function onEquals(){
-    console.log('in onEquals');
-}
-
-function onClear(){
-    console.log('in onClear')
-}
