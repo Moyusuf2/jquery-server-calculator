@@ -4,7 +4,6 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-let answer = [];
 let history = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,10 +17,16 @@ app.listen(5000,function(){
 app.post('/calculate', (req, res) =>{
     console.log('POST /calculate', req.body);
 
-    numbersFromClient=req.body
+    calculateNumbers(req.body)
 
-    console.log('numberFromClient data', numbersFromClient)
+    res.sendStatus(201);
 
+    history.push(req.body)
+
+})
+
+    function calculateNumbers(){
+        console.log('in CalculateNumbers')
     if(numbersFromClient.op === '+');
          numbersFromClient.total = Number(numbersFromClient.numbOne) + Number(numbersFromClient.numbTwo);
     if(numbersFromClient.op === '-');
@@ -34,11 +39,11 @@ app.post('/calculate', (req, res) =>{
     
         res.sendStatus(201);
 
-    answer = numbersFromClient
-});
+    history.push(numbersFromClient)
+}
 
 app.get('/calculate', (req, res) => {
-    res.send(answer);
+    res.send(history);
 })
 
 

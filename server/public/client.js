@@ -2,9 +2,7 @@ console.log('in client.js');
 
 $(document).ready(onReady);
 
-let newSubmit =  {
-
-};
+let history =[];
 
 function onReady(){
 console.log('ready!');
@@ -14,6 +12,10 @@ $('#add').on('click', onAdd);
 $('#subtract').on('click', onSubtract);
 $('#divide').on('click', onDivide);
 $('multiply').on('click', onMultiply);
+$('#clearBtn').on('click',emptyInputs);
+
+
+newSubmit ={};
 
 }
 
@@ -23,7 +25,7 @@ function onEqual(evt){
     newSubmit.numOne = Number($('#number1').val()),
     newSubmit.numTwo = Number($('#number2').val()),
     
-    console.log(newSubmit);
+   
     
     $.ajax({
         method: 'POST', 
@@ -33,16 +35,14 @@ function onEqual(evt){
     })
     .then(response => {
         console.log('POST /calculate response', response);
-
-        render();
-        answer();
+        loadAnswer();
     })
     .catch(err => {
         console.log('POST /calculate error', err);
     });
 }
 
-function answer(){
+function loadAnswer(){
     console.log('in answer');
 
     $.ajax ({
@@ -52,20 +52,12 @@ function answer(){
   })
   .then((response) => {
     console.log('GET /calculate', response);
-    newSubmit = response;
-    render();
+
+    $('')
   })
   .catch((err) => {
    console.log('GET /calculate error', err);
   })
-}
-function render(){
-    // $('.answers').empty();
-console.log('in Render')
-
-$('.answers').append(`${newSubmit[newSubmit.total]}`);
-
-    console.log('newSubmit',newSubmit)
 }
 
 function onAdd(evt){
@@ -96,5 +88,16 @@ function onMultiply(evt){
     newSubmit.op = '*'
 
 }
+function render(){
+
+console.log('in Render')
+}
+
+function emptyInputs(){
+    $('#1stNumber').val('');
+    $('#2ndNumber').val('');
+    }
+    
+
 
 
