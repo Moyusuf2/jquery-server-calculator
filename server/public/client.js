@@ -2,7 +2,7 @@ console.log('in client.js');
 
 $(document).ready(onReady);
 
-let history =[];
+
 
 function onReady(){
 console.log('ready!');
@@ -11,19 +11,19 @@ $('#submitBtn').on('click', onEqual);
 $('#add').on('click', onAdd);
 $('#subtract').on('click', onSubtract);
 $('#divide').on('click', onDivide);
-$('multiply').on('click', onMultiply);
-$('#clearBtn').on('click',emptyInputs);
+$('#multiply').on('click', onMultiply);
+$('#clearBtn').on('click','clearBtn',emptyInputs);
 
-
+loadAnswer()
+let history =[];
 newSubmit ={};
 
 }
 
 function onEqual(evt){
     evt.preventDefault();
-    
-    newSubmit.numOne = Number($('#number1').val()),
-    newSubmit.numTwo = Number($('#number2').val()),
+    newSubmit.numOne = $('#number1').val()
+    newSubmit.numTwo = $('#number2').val()
     
    
     
@@ -43,7 +43,6 @@ function onEqual(evt){
 }
 
 function loadAnswer(){
-    console.log('in answer');
 
     $.ajax ({
     url: '/calculate',
@@ -51,9 +50,11 @@ function loadAnswer(){
 
   })
   .then((response) => {
-    console.log('GET /calculate', response);
-
-    $('')
+    console.log('response is:', response);
+    // renderAnswer(response)
+    render(response)
+    history = response
+    // console.log('answer',answer)
   })
   .catch((err) => {
    console.log('GET /calculate error', err);
@@ -88,14 +89,33 @@ function onMultiply(evt){
     newSubmit.op = '*'
 
 }
-function render(){
+function render(response){
+   $('allAnswers').empty()
+console.log('in Render',response)
+    $('.allAnswers').empty();
+    for(let i = response.length-1; i >= 0; i--){
+    $('.allAnswers').append(`
+    <h3>${response[i].numOne} ${response[i].op} ${response[i].numTwo} = ${response[i].answer}</h3>
+    
+    `)
+    }
+    $('.answer').text(`${response[response.length -1].answer}`)
 
-console.log('in Render')
+
+    // Now, get the last item in the response array
+    /// and render it's `answer` property to the DOM
+    
 }
 
+function renderAnswer(response){
+    console.log('answer is:')
+    $('.answer').text(`
+    ${response[0].answer}
+`)
+}
 function emptyInputs(){
-    $('#1stNumber').val('');
-    $('#2ndNumber').val('');
+    $('#1stNumber').empty();
+    $('#2ndNumber').empty();
     }
     
 

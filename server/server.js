@@ -10,36 +10,59 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('./server/public'));
 
-app.listen(5000,function(){
+app.listen(5000, function () {
     console.log('Server is live!');
 });
 
-app.post('/calculate', (req, res) =>{
+app.post('/calculate', (req, res) => {
     console.log('POST /calculate', req.body);
 
-    calculateNumbers(req.body)
+    // do math
+    let calculation = calculateNumbers(req.body)
 
+    console.log('Calculation is:', calculation)
     res.sendStatus(201);
 
-    history.push(req.body)
+    // req.body is your math object
+    // it needs the calculation
+    req.body.answer = calculation;
+
+    history.push(req.body);
 
 })
 
-    function calculateNumbers(){
-        console.log('in CalculateNumbers')
-    if(numbersFromClient.op === '+');
-         numbersFromClient.total = Number(numbersFromClient.numbOne) + Number(numbersFromClient.numbTwo);
-    if(numbersFromClient.op === '-');
-         numbersFromClient.total = Number(numbersFromClient.numbOne) - Number(numbersFromClient.numbTwo);
-    if(numbersFromClient.op === '/');
-         numbersFromClient.total = Number(numbersFromClient.numbOne) / Number(numbersFromClient.numbTwo);
-    if(numbersFromClient.op === '*');
-        numbersFromClient.total = Number(numbersFromClient.numbOne) * Number(numbersFromClient.numbTwo);
+function calculateNumbers(numbersFromClient) {
+    console.log('in CalculateNumbers', numbersFromClient)
+    let answer = 0;
 
+    let numberOne = parseInt(numbersFromClient.numOne);
+    let numberTwo = parseInt(numbersFromClient.numTwo);
+
+
+    if (numbersFromClient.op === '+') {
+        answer = numberOne + numberTwo
+        // console.log("Number is:", numberOne, numbersFromClient.numOne);
     
-        res.sendStatus(201);
-
-    history.push(numbersFromClient)
+            return answer
+    }
+    if (numbersFromClient.op === '-') {
+        answer = numberOne - numberTwo
+        // console.log("Number is:", numberOne, numbersFromClient.numOne);
+    
+            return answer
+    }
+    if (numbersFromClient.op === '*') {
+        answer = numberOne * numberTwo
+        // console.log("Number is:", numberOne, numbersFromClient.numOne);
+    
+            return answer
+    }
+    if (numbersFromClient.op === '/') {
+        answer = numberOne / numberTwo
+        // console.log("Number is:", numberOne, numbersFromClient.numOne);
+    
+            return answer
+    }
 }
 
 app.get('/calculate', (req, res) => {
