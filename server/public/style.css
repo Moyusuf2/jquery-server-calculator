@@ -4,3 +4,89 @@ body{
 .answer{
     font-size: 40px;
 }
+
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .calculator-container {
+    width: 500px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .calculator-header {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .calculator-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .calculator-input input[type="number"] {
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .calculator-operations {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .calculator-operations input[type="button"] {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+  }
+  
+  .calculator-operations input[type="button"]:hover {
+    background-color: #bbb;
+  }
+  
+  input[type="button"] {
+    margin-right: 10px;
+  }
+  
+  .answer {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+  }
+  
+  .answer-header {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .calculator-history {
+    margin-top: 20px;
+  }
+  
+  .calculator-history h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .allAnswers {
+    text-align: center;
+  }
+  

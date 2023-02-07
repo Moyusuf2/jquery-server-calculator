@@ -65,9 +65,15 @@ function calculateNumbers(numbersFromClient) {
     }
 }
 
+app.get('/clear', (req, res) => {
+    history = [];
+    res.sendStatus(200);
+})
+
 app.get('/calculate', (req, res) => {
     res.send(history);
 })
+
 
 
 

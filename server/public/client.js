@@ -13,18 +13,33 @@ function onReady() {
     $('#divide').on('click', onDivide);
     $('#multiply').on('click', onMultiply);
     $('#clearBtn').on('click',emptyInputs);
+    $('#clearHistory').on('click',clearHistory)
 
     loadAnswer()
     newSubmit = {};
 
+}
+function clearHistory() {
+    // clear history
+    $.ajax({
+        url: '/clear',
+        method: 'GET'
+    })
+        .then((response) => {
+            console.log('response is:', response);
+            render(response);
+            $('.allAnswers').empty();
+            $('.answer').text('');
+        })
+        .catch((err) => {
+            console.log('GET /calculate error', err);
+        });
 }
 
 function onEqual(evt) {
     evt.preventDefault();
     newSubmit.numOne = $('#number1').val()
     newSubmit.numTwo = $('#number2').val()
-
-
 
     $.ajax({
         method: 'POST',
@@ -52,7 +67,6 @@ function loadAnswer() {
             console.log('response is:', response);
             // renderAnswer(response)
             render(response)
-            history = response
             // console.log('answer',answer)
         })
         .catch((err) => {
@@ -95,7 +109,6 @@ function render(response) {
     for (let i = response.length - 1; i >= 0; i--) {
         $('.allAnswers').append(`
     <h3>${response[i].numOne} ${response[i].op} ${response[i].numTwo} = ${response[i].answer}</h3>
-    
     `)
     }
     $('.answer').text(`${response[response.length - 1].answer}`)
