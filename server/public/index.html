@@ -11,19 +11,28 @@
 </head>
 <body>
     <h1>Server Side Calculator</h1>
-    
-        <input type="number" name="number" id="number1" >
-        <button class = "operatorBtn" id="add">+</button>
-        <button class="operatorBtn" id="subtract">-</button>
-        <button class="operatorBtn" id="multiply">*</button>
-        <button class="operatorBtn" id="divide">/</button>
-        <input type="number" name="number2" id="number2">
-        <button id="submitBtn">=</button>
-        <button id="clearBtn">C</button>
-   
-    <h3 class ="answer"></h3>
-    <h3>Answers</h3>
-    <ul class="allAnswers"><h2>Answer History</h2></ul>
+    <div class="calculator-container">
+        <div class="calculator-header">
+          Calculator
+        </div>
+        <div class="calculator-input">
+          <input type="number" id="number1" placeholder="enter a number">
+          <input type="number" id="number2" placeholder="enter a number">
+        </div>
+        <div class="calculator-operations">
+          <input type="button" id="add" value="+">
+          <input type="button" id="subtract" value="-">
+          <input type="button" id="divide" value="/">
+          <input type="button" id="multiply" value="*">
+        </div>
+        <input type="button" id="submitBtn" value="=">
+        <input type="button" id="clearBtn" value="Clear">
+        <div>
+            <h3 class ="answer"></h3>
+        </div>
+        <div class="calculator-history">
+          <h3>History</h3>
+          <div class="allAnswers"></div>
 
 </body>
 </html>
