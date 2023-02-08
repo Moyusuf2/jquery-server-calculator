@@ -41,6 +41,11 @@ function onEqual(evt) {
     newSubmit.numOne = $('#number1').val()
     newSubmit.numTwo = $('#number2').val()
 
+    if (!newSubmit.op) {
+        alert("Please select an operation");
+        return;
+    }
+
     $.ajax({
         method: 'POST',
         url: '/calculate',
@@ -55,6 +60,7 @@ function onEqual(evt) {
             console.log('POST /calculate error', err);
         });
 }
+
 
 function loadAnswer() {
 
