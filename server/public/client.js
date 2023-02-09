@@ -55,6 +55,7 @@ function onEqual(evt) {
         .then(response => {
             console.log('POST /calculate response', response);
             loadAnswer();
+            newSubmit.op = '';
         })
         .catch(err => {
             console.log('POST /calculate error', err);
@@ -85,6 +86,7 @@ function onAdd(evt) {
     console.log('in onAdd');
 
     newSubmit.op = '+'
+    $('#number2').focus();
 }
 
 function onSubtract(evt) {
@@ -92,6 +94,7 @@ function onSubtract(evt) {
     console.log('in onSubtract')
 
     newSubmit.op = '-'
+    $('#number2').focus();
 }
 
 function onDivide(evt) {
@@ -99,6 +102,7 @@ function onDivide(evt) {
     console.log('in onDivide')
 
     newSubmit.op = '/'
+    $('#number2').focus();
 }
 
 function onMultiply(evt) {
@@ -106,6 +110,7 @@ function onMultiply(evt) {
     console.log('in onMultiply')
 
     newSubmit.op = '*'
+    $('#number2').focus();
 
 }
 function render(response) {
