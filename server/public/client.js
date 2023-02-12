@@ -86,7 +86,16 @@ function onAdd(evt) {
     console.log('in onAdd');
 
     newSubmit.op = '+'
-    $('#number2').focus();
+
+    if (!$('#number1').val()) {
+        $('#number1').focus();
+        return;
+    }
+    
+    if (!$('#number2').val()) {
+        $('#number2').focus();
+        return;
+    }
 }
 
 function onSubtract(evt) {
@@ -94,7 +103,15 @@ function onSubtract(evt) {
     console.log('in onSubtract')
 
     newSubmit.op = '-'
-    $('#number2').focus();
+    if (!$('#number1').val()) {
+        $('#number1').focus();
+        return;
+    }
+    
+    if (!$('#number2').val()) {
+        $('#number2').focus();
+        return;
+    }
 }
 
 function onDivide(evt) {
@@ -102,7 +119,15 @@ function onDivide(evt) {
     console.log('in onDivide')
 
     newSubmit.op = '/'
-    $('#number2').focus();
+    if (!$('#number1').val()) {
+        $('#number1').focus();
+        return;
+    }
+    
+    if (!$('#number2').val()) {
+        $('#number2').focus();
+        return;
+    }
 }
 
 function onMultiply(evt) {
@@ -110,7 +135,15 @@ function onMultiply(evt) {
     console.log('in onMultiply')
 
     newSubmit.op = '*'
-    $('#number2').focus();
+    if (!$('#number1').val()) {
+        $('#number1').focus();
+        return;
+    }
+    
+    if (!$('#number2').val()) {
+        $('#number2').focus();
+        return;
+    }
 
 }
 function render(response) {
